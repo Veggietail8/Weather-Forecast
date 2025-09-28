@@ -68,16 +68,15 @@ main {
 
 .weather-app-temp-icon {
   font-size: 44px;
-  margin-top: 20px;
 }
 
 .weather-app-temp-number {
-  font-size: 88px;
+  font-size: 75px;
   margin-left: 10px;
   font-weight: 500;
 }
 
 .weather-app-temp-unit {
-  font-size: 28px;
+  font-size: 24px;
   margin-top: 16px;
 }

@@ -1,3 +1,26 @@
+function refreshTime() {
+  let now = new Date();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[now.getDay()];
+  let currentHour = now.getHours();
+  let currentMinute = now.getMinutes();
+  console.log(day, currentHour, currentMinute);
+  let dayElement = document.querySelector("#current-day");
+  let hourElement = document.querySelector("#current-hour");
+  let minuteElement = document.querySelector("#current-minute");
+  dayElement.innerHTML = day;
+  hourElement.innerHTML = currentHour;
+  minuteElement.innerHTML = currentMinute;
+}
+
 function refreshWeather(response) {
   console.log(response.data);
   let tempNumberElement = document.querySelector("#weather-app-temp-number");
@@ -6,16 +29,22 @@ function refreshWeather(response) {
   let weatherConditionElement = document.querySelector(
     "#weather-condition-description"
   );
+  let weatherIconElement = document.querySelector("#weather-app-temp-icon");
 
   let currentTemp = response.data.temperature.current;
   let currentHumidity = response.data.temperature.humidity;
   let currentWind = response.data.wind.speed;
   let currentWeatherCondition = response.data.condition.description;
+  let currentWeatherIconUrl = response.data.condition.icon_url;
+  console.log(currentWeatherIconUrl);
 
   tempNumberElement.innerHTML = currentTemp;
   humidityPercentElement.innerHTML = `${currentHumidity}%`;
   windSpeedElement.innerHTML = `${currentWind}km/h`;
   weatherConditionElement.innerHTML = currentWeatherCondition;
+  weatherIconElement.innerHTML = `<img src=${currentWeatherIconUrl} alt="Icon"></img>`;
+
+  refreshTime();
 }
 
 function searchCity(city) {
