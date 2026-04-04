@@ -36,7 +36,7 @@ header {
   color: white;
 }
 
-form button:hover {
+#search-form-submit-element:hover {
   cursor: pointer;
 }
 
