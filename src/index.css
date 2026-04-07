@@ -71,7 +71,10 @@ main {
 }
 
 .weather-app-temp-icon {
-  font-size: 44px;
+  width: 85px;
+  height: 85px;
+  display: block;
+  margin: 0 auto;
 }
 
 .weather-app-temp-number {
