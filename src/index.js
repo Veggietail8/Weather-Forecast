@@ -12,7 +12,6 @@ function refreshTime() {
   let day = days[now.getDay()];
   let currentHour = now.getHours();
   let currentMinute = now.getMinutes();
-  console.log(day, currentHour, currentMinute);
 
   // Format the minutes when it's less than 10
   if (currentMinute < 10) {
@@ -51,7 +50,7 @@ function refreshWeather(response) {
 
   // Update the weather condition description
   let weatherConditionElement = document.querySelector(
-    "#weather-condition-description"
+    "#weather-condition-description",
   );
   let currentWeatherCondition = response.data.condition.description;
   weatherConditionElement.innerHTML = currentWeatherCondition;
@@ -62,6 +61,7 @@ function refreshWeather(response) {
   weatherIconElement.innerHTML = `<img src=${currentWeatherIconUrl} alt="Icon"></img>`;
 
   refreshTime();
+  getForecast(response.data.city);
 }
 
 //Receiving the search input value and look for the city-specific API; Call the API, and trigger the function which refreshes data on the UI
@@ -82,7 +82,15 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 searchCity("Vancouver"); /*Display a default city when the page is refreshed*/
 
-function displayforecast() {
+function getForecast(city) {
+  let apiKey = "836444o057f4ft35027a7882a9606bb0";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayforecast);
+}
+
+function displayforecast(response) {
+  console.log(response);
+
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHtml = "";
 
